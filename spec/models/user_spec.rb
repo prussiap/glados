@@ -5,8 +5,10 @@
 #  id         :integer          not null, primary key
 #  name       :string(255)
 #  email      :string(255)
+#  address    :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#
 
 require 'spec_helper'
 
@@ -58,4 +60,28 @@ describe User do
       user.fobs.should == myfobs + [ newfob ]
     end
   end
+  
+  describe "has door_keys" do
+    it "will take a door_key" do
+      my_door_key = [ DoorKey.new ]
+      user = User.new(door_keys: my_door_key)
+      user.door_keys.should == my_door_key
+    end
+
+    it "will take many door_keys" do
+      my_door_key = [ DoorKey.new, DoorKey.new ]
+      user = User.new(door_keys: my_door_key)
+      user.door_keys.should == my_door_key
+  end
+
+    it "will add a door_key" do
+      my_door_key = [ DoorKey.new ]
+      user = User.new(door_keys: my_door_key)
+      new_door_key = DoorKey.new
+      user.door_keys << new_door_key
+      user.door_keys.should == my_door_key + [ new_door_key ]
+    end
+  end
+
+
 end

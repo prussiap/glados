@@ -13,13 +13,12 @@ require 'spec_helper'
 
 describe Fob do
   before do
-  	@fob = Fob.new( key: "8acae86f709f8aa375bd425a2040c606", user_id: "1")
+  	@fob = Fob.new(key: "8acae86f709f8aa375bd425a2040c606")
   end
 
   subject { @fob }
 
   it { should respond_to(:key) }
-  it { should respond_to(:user_id)}
 
   it { should be_valid }
 
@@ -41,7 +40,8 @@ describe Fob do
   describe "user association" do
   	it "has a user" do
 	  user = User.new
-	  fob = Fob.new(key: "8acae86f709f8aa375bd425a2040c606", user: user)
+	  fob = Fob.new(key: "8acae86f709f8aa375bd425a2040c606")
+    fob.user = user
   	  fob.user.should == user
   	end
   end

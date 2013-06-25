@@ -10,10 +10,11 @@
 #
 
 class Fob < ActiveRecord::Base
-  attr_accessible :key, :user, :user_id
+  attr_accessible :key
 
   belongs_to :user
 
   validates :key , presence: true, length: { maximum: 50 }, uniqueness: { case_sensitive: false }
+
 
 end

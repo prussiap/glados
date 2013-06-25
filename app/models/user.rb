@@ -11,9 +11,10 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :name, :fobs
+  attr_accessible :name, :fobs, :door_keys
 
   has_many :fobs
+  has_many :door_keys
 
   validates :name, presence: true, length: { maximum: 50}
 
