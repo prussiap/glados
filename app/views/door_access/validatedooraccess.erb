@@ -1,0 +1,19 @@
+<html>
+<head>glados is here</head>
+
+<body>
+<b> Here you will validate </b>
+
+<%= form_tag("/validatedooraccess", method: "get") do |f| %>
+
+<%= f.collection_select :fobs, Fob.all, :id, :key %>
+<%= f.collection_select :doors, Door.all, :id, :doorname %>
+
+  <%= submit_tag("Open Door") %>
+<% end %>
+
+
+</body>
+
+
+</html>

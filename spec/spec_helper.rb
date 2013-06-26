@@ -33,6 +33,15 @@ Spork.prefork do
     # instead of true.
     config.use_transactional_fixtures = true
 
+# Use color in STDOUT
+    config.color_enabled = true
+
+  # Use color not only in STDOUT but also in pagers and files
+    config.tty = true
+
+  # Use the specified formatter
+    config.formatter = :documentation # :progress, :html, :textmate
+
     # If true, the base class of anonymous controllers will be inferred
     # automatically. This will be the default behavior in future versions of
     # rspec-rails.
