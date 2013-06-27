@@ -4,12 +4,13 @@
 <body>
 <b> Here you will validate </b>
 
-<%= form_tag("/validatedooraccess", method: "get") do |f| %>
+<%= form_tag("/dooraccess", method: "get") do %><p>
 
-<%= f.collection_select :fobs, Fob.all, :id, :key %>
-<%= f.collection_select :doors, Door.all, :id, :doorname %>
+<b>Fob Key</b><%= collection_select :fob, :fob_id, @fobs, :id, :key %> <br>
 
-  <%= submit_tag("Open Door") %>
+<b>Door Name</b><%= collection_select :door, :door_id, @doors, :id, :doorname %><br>
+
+<%= submit_tag("Open Door") %>
 <% end %>
 
 
