@@ -1,5 +1,8 @@
 require 'rubygems'
 require 'spork'
+require 'factory_girl'
+
+FactoryGirl.find_definitions
 
 Spork.prefork do
   # Loading more in this block will cause your tests to run faster. However,
@@ -46,6 +49,7 @@ Spork.prefork do
     # automatically. This will be the default behavior in future versions of
     # rspec-rails.
     config.infer_base_class_for_anonymous_controllers = false
+
   end
 end
 

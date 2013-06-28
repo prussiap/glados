@@ -1,8 +1,12 @@
-<html>
+<html><p>
 <head>glados is here</head>
 
 <body>
-<b> Here you will validate </b>
+<p>
+<% if flash[:door_validate] %>
+  <%= raw flash[:door_validate] %>
+<% end %><p>
+<b> Here you will validate your fob to your door </b>
 
 <%= form_tag("/dooraccess", method: "get") do %><p>
 
