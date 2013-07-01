@@ -36,7 +36,7 @@ describe Door do
 		  door = FactoryGirl.create :door
       new_door_key = FactoryGirl.build :door_key
       another_door_key = FactoryGirl.build :door_key
-			door.door_keys << new_door_key
+			door.door_keys << new_door_key 
       door.door_keys << another_door_key
       door.door_keys.should == [new_door_key, another_door_key]
 		end
