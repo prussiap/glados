@@ -33,30 +33,22 @@ describe Door do
 		end
 	end
 
-	describe "fob should validate door" do
-		before do
-
-      fob     = FactoryGirl.create :fob
+	describe "should validate" do
+    it "should validate door and fob" do
+      user    = FactoryGirl.create(:user)
+      fob     = FactoryGirl.create :fob, user: user
       door_key = FactoryGirl.create(:door_key, user: user)
-      user    = FactoryGirl.create(:user, fobs: [ fob ])
-#			@fob    = Fob.create(key: "888ae86f709f8aa375bd425a2040c606")
-#      @user   = User.create(name: "test user", fobs: [ @fob ], door_keys: [ ])
-#      @user   = FactoryGirl.create(:user)
-#			@door 	= Door.create(doorname: "test door")
-      
-#			@door_key = DoorKey.create(user: @user, door: @door)
-      door_key = FactoryGirl.create(:door_key, user: @user)
-#      @door = FactoryGirl.create(:door, door_keys: [ @door_key ] )
-			user.door_keys <<  @door_key
-			@user.save
-		end
+      door    = door_key.door
+      door.validate_fob(fob).should == true
+    end
 
-		it "should validate fob and door" do
-      fob = Fob.find(@fob.id)
-      door = Door.find(@door.id)
-			@door.validate_fob(fob).should == true
-			
-		end
+#		it "should validate fob and door" do
+#      fob = Fob.find(@fob.id)
+#      door = Door.find(@door.id)
+#			door.validate_fob(fob).should == true
+#
+   			
+#		end
 	end
  
 end

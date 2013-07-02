@@ -4,6 +4,11 @@ class DoorAccessController < ApplicationController
 		@fobs = Fob.all
 		@doors = Door.all
 		flash[:door_validate] = '''<b>testing door validate</b>'''
-	end
+    
+   
+
+
+
+  end
 
 end
