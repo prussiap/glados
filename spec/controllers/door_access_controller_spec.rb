@@ -26,18 +26,13 @@ describe DoorAccessController do
 		end
 	end
 	describe "fob and door" do
-		before do
+    it "should validate_fob" do
 			@fob = Fob.create(key: "888ae86f709f8aa375bd425a2040c606")
 			@user = User.create(name: "test user", fobs: [@fob])
 			@door 	= Door.create(doorname: "test door")
-			@door_key = DoorKey.create(user_id: @user.id, door_id: @door_id)
-			@user.door_keys = @door_key.id
-			@user.save
-		end
+			@door_key = DoorKey.create(user: @user, door: @door)
+      @door.validate_fob(@fob).should be_true
 
-		it "should validate" do
-			
 		end
-
 	end
 end
