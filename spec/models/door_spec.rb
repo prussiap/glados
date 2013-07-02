@@ -21,7 +21,6 @@ describe Door do
   	# it { should respond_to(:doorkey_id)}
 
  	it { should be_valid}
-  	
 	describe "when door is already taken" do
 		it "should not be duplicated" do
 			matching_door_name = "existing_name"
@@ -29,7 +28,7 @@ describe Door do
       door_with_same_name = FactoryGirl.build(:door, doorname: matching_door_name )
 			door_with_same_name.should_not be_valid
 		end
-	end 
+	end
 
 	describe "has keys " do
 		it "will add a doorkey" do
@@ -47,7 +46,8 @@ describe Door do
 
 			@fob    = Fob.create(key: "888ae86f709f8aa375bd425a2040c606")
       @user   = User.create(name: "test user", fobs: [ @fob ], door_keys: [ ])
-#			@door 	= Door.create(doorname: "test door")
+#      @user   = FactoryGirl.create(:user)
+			@door 	= Door.create(doorname: "test door")
       @door = FactoryGirl.create :door
 			@door_key = DoorKey.create(user: @user, door: @door)
 			@user.door_keys <<  @door_key
