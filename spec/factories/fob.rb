@@ -1,8 +1,9 @@
 require 'factory_girl'
 
 FactoryGirl.define do
-  factory :door_key do
-    association :door, strategy: :build
+
+  factory :fob do
+    sequence(:key) { Digest::MD5.hexdigest(rand.to_s) } 
     association :user
   end
 end

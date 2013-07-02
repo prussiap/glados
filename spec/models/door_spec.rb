@@ -12,15 +12,10 @@
 require 'spec_helper'
 
 describe Door do
-  before do
-  	@door = FactoryGirl.build :door 
-  end
-
-  subject { @door }
+  subject { FactoryGirl.build(:door) }
   	it { should respond_to(:doorname) }
-  	# it { should respond_to(:doorkey_id)}
+    it { should be_valid}
 
- 	it { should be_valid}
 	describe "when door is already taken" do
 		it "should not be duplicated" do
 			matching_door_name = "existing_name"
@@ -33,24 +28,26 @@ describe Door do
 	describe "has keys " do
 		it "will add a doorkey" do
 		  door = FactoryGirl.create :door
-      new_door_key = FactoryGirl.build :door_key
-      another_door_key = FactoryGirl.build :door_key
-			door.door_keys << new_door_key 
-      door.door_keys << another_door_key
-      door.door_keys.should == [new_door_key, another_door_key]
+      new_door_key = FactoryGirl.create(:door_key, door: door)
+      door.door_keys.should == [ new_door_key ]
 		end
 	end
 
 	describe "fob should validate door" do
 		before do
 
-			@fob    = Fob.create(key: "888ae86f709f8aa375bd425a2040c606")
-      @user   = User.create(name: "test user", fobs: [ @fob ], door_keys: [ ])
+      fob     = FactoryGirl.create :fob
+      door_key = FactoryGirl.create(:door_key, user: user)
+      user    = FactoryGirl.create(:user, fobs: [ fob ])
+#			@fob    = Fob.create(key: "888ae86f709f8aa375bd425a2040c606")
+#      @user   = User.create(name: "test user", fobs: [ @fob ], door_keys: [ ])
 #      @user   = FactoryGirl.create(:user)
-			@door 	= Door.create(doorname: "test door")
-      @door = FactoryGirl.create :door
-			@door_key = DoorKey.create(user: @user, door: @door)
-			@user.door_keys <<  @door_key
+#			@door 	= Door.create(doorname: "test door")
+      
+#			@door_key = DoorKey.create(user: @user, door: @door)
+      door_key = FactoryGirl.create(:door_key, user: @user)
+#      @door = FactoryGirl.create(:door, door_keys: [ @door_key ] )
+			user.door_keys <<  @door_key
 			@user.save
 		end
 
@@ -61,5 +58,5 @@ describe Door do
 			
 		end
 	end
-
+ 
 end
