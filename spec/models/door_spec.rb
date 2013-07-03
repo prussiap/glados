@@ -42,13 +42,5 @@ describe Door do
       door.validate_fob(fob).should == true
     end
 
-#		it "should validate fob and door" do
-#      fob = Fob.find(@fob.id)
-#      door = Door.find(@door.id)
-#			door.validate_fob(fob).should == true
-#
-   			
-#		end
 	end
- 
 end
