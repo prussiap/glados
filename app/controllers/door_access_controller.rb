@@ -11,6 +11,7 @@ class DoorAccessController < ApplicationController
       adoor = Door.find(params[:door][:door_id])
       afob  = Fob.find(params[:fob][:fob_id])
       if adoor.validate_fob(afob) == true
+        flash[:notice] = "Post successfully created"
         flash[:door_validate] = "Your doorname : #{adoor.doorname} your fob key: #{afob.key}"
       end
     end

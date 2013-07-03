@@ -5,6 +5,9 @@
 <p>
 <% if flash[:door_validate] %>
   <%= raw flash[:door_validate] %>
+  <% if flash[:notice] %>
+        <div class="notice"><%= flash[:notice] %></div>
+          <% end %>
 <% end %><p>
 <b> Here you will validate your fob to your door </b>
 
