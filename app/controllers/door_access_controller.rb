@@ -13,9 +13,5 @@ class DoorAccessController < ApplicationController
         flash.now[:error] = "You are not authorized to access this door. Come again!"
       end
     end
-
-
-
   end
-
 end

@@ -24,17 +24,16 @@ describe DoorAccessController do
 		end
 	end
 
-#	describe "should validate fob for door" do
-#    it "by receiving params" do
-#      door = mock_model(Door, :validate_fob => true)
-#      fob     = FactoryGirl.create :fob, user: user
-#      door_key = FactoryGirl.create(:door_key, user: user)
-#      door    = door_key.door
-#      helper.params = { :fob => {:fob_id => fob.id}, :door => {:door_id => door.id}}
-#      get :index
-#      assigns(:fob)
-#      door.validate_fob(fob).should == true
 
-#    end
-#	end
+	describe "should validate" do
+    it "should validate door and fob" do
+      user    = FactoryGirl.create(:user)
+      fob     = FactoryGirl.create :fob, user: user
+      door_key = FactoryGirl.create(:door_key, user: user)
+      door    = door_key.door
+
+      get :validatedooraccess, :fob => {:fob_id => fob.id}, :door => {:door_id => door.id}
+      door.validate_fob(fob).should == true
+    end
+	end
 end

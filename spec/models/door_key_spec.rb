@@ -13,7 +13,7 @@ require 'spec_helper'
 
 describe DoorKey do
   before do
-  	@doorkey = DoorKey.new(user_id: 1 , door_id: 2)
+    @doorkey = FactoryGirl.build :door_key
   end
 
   subject { @doorkey }
@@ -35,16 +35,16 @@ describe DoorKey do
 
   	describe "relationship to door " do
 		it "has a door" do
-			mydoor = Door.new
-			adoorkey = DoorKey.new(door: mydoor)
+			mydoor = FactoryGirl.build :door
+      adoorkey = FactoryGirl.build :door_key, door: mydoor 
 			adoorkey.door.should == mydoor
 		end
 	end
 
     describe "relationship to user " do
     it "has a user" do
-      myuser = User.new
-      a_new_door_key = DoorKey.new( user: myuser )
+      myuser = FactoryGirl.build :user
+      a_new_door_key = FactoryGirl.build :door_key, user: myuser
       a_new_door_key.user.should == myuser
     end
   end

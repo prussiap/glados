@@ -1,0 +1,12 @@
+<b> Here you will validate your fob to your door </b>
+
+<%= form_tag("/dooraccess", method: "get") do %><p>
+
+<b>Fob Key</b><%= collection_select :fob, :fob_id, @fobs, :id, :key %> <br>
+
+<b>Door Name</b><%= collection_select :door, :door_id, @doors, :id, :doorname %><br>
+
+<%= submit_tag("Open Door") %>
+
+<% end %>
+

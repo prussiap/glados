@@ -13,7 +13,7 @@ require 'spec_helper'
 
 describe Fob do
   before do
-  	@fob = Fob.new(key: "8acae86f709f8aa375bd425a2040c606")
+  	@fob = FactoryGirl.build :fob 
   end
 
   subject { @fob }
@@ -39,9 +39,8 @@ describe Fob do
 
   describe "user association" do
   	it "has a user" do
-	  user = User.new
-	  fob = Fob.new(key: "8acae86f709f8aa375bd425a2040c606")
-    fob.user = user
+	  user = FactoryGirl.build :user 
+	  fob = FactoryGirl.build :fob, user: user 
   	  fob.user.should == user
   	end
   end
