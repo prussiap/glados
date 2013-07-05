@@ -2,7 +2,6 @@ require 'spec_helper'
 
 describe DoorAccessController do
 
-
 	describe "listings" do
 		it "should open get validatedooraccess" do
 			get :validatedooraccess
@@ -17,22 +16,25 @@ describe DoorAccessController do
 			assigns(:doors).should_not be_nil
 		end
 	end
-	
-	describe "should populate fob field" do
 
+	describe "should populate fob field" do
 		it "renders the :index view" do
 			get :validatedooraccess
 			assigns(:fobs).should_not be_nil
 		end
 	end
-	describe "fob and door" do
-    it "should validate_fob" do
-			@fob = Fob.create(key: "888ae86f709f8aa375bd425a2040c606")
-			@user = User.create(name: "test user", fobs: [@fob])
-			@door 	= Door.create(doorname: "test door")
-			@door_key = DoorKey.create(user: @user, door: @door)
-      @door.validate_fob(@fob).should be_true
 
-		end
-	end
+#	describe "should validate fob for door" do
+#    it "by receiving params" do
+#      door = mock_model(Door, :validate_fob => true)
+#      fob     = FactoryGirl.create :fob, user: user
+#      door_key = FactoryGirl.create(:door_key, user: user)
+#      door    = door_key.door
+#      helper.params = { :fob => {:fob_id => fob.id}, :door => {:door_id => door.id}}
+#      get :index
+#      assigns(:fob)
+#      door.validate_fob(fob).should == true
+
+#    end
+#	end
 end
